@@ -1,135 +1,195 @@
-# Turborepo starter
+# 🚀 Vite Module Federation Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern monorepo setup powered by **Turborepo** and **Vite Module Federation**, featuring a host application that dynamically integrates multiple remote micro-frontends.
 
-## Using this example
+## 📦 Applications
 
-Run the following command:
+| Application         | Description                                   | Port   |
+| ------------------- | --------------------------------------------- | ------ |
+| **`container-app`** | Host application that consumes remote modules | `3000` |
+| **`cart-app`**      | Remote application for cart functionality     | `3001` |
+| **`products-app`**  | Remote application for product listings       | `3002` |
 
-```sh
-npx create-turbo@latest
+## 🛠️ Prerequisites
+
+Ensure you have the following installed:
+
+- **Node.js** >= 18.x
+- **npm**, **yarn**, or **pnpm** (recommended)
+
+## 🚀 Quick Start
+
+### 1. Clone & Setup
+
+```bash
+git clone https://github.com/PouriaDamavandi/tajrobeh-task.git
+cd tajrobeh-task
 ```
 
-## What's inside?
+### 2. Install Dependencies
 
-This Turborepo includes the following packages/apps:
+```bash
+# Using npm
+npm install
 
-### Apps and Packages
+# Using yarn
+yarn install
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+# Using pnpm (recommended for Turborepo)
+pnpm install
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 3. Development Workflow
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+#### Option A: Run All Applications Simultaneously
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+```bash
+# Using Turborepo to run all apps in parallel
+npm run dev
+# or
+pnpm dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+#### Option B: Run Applications Individually
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+```bash
+# Terminal 1 - Start cart app (port 3001)
+cd apps/cart-app && npm run dev
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+# Terminal 2 - Start products app (port 3002)
+cd apps/products-app && npm run dev
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Terminal 3 - Start container app (port 3000)
+cd apps/container-app && npm run dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 4. Build for Production
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+# Build all applications
+npm run build
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Build specific application
+npm run build -- --filter=container-app
 ```
 
-## Useful Links
+## 📁 Project Structure
 
-Learn more about the power of Turborepo:
+```
+tajrobeh-task/
+├── apps/
+│   ├── cart-app/                 # Remote cart application
+│   │   ├── src/
+│   │   ├── package.json
+│   │   └── vite.config.ts
+│   ├── products-app/             # Remote products application
+│   │   ├── src/
+│   │   ├── package.json
+│   │   └── vite.config.ts
+│   └── container-app/            # Host application
+│       ├── src/
+│       ├── package.json
+│       └── vite.config.ts
+├── packages/
+│   └── shared/                   # Shared utilities and components
+│       ├── src/
+│       └── package.json
+├── turbo.json                    # Turborepo configuration
+├── package.json                  # Root package.json
+└── README.md
+```
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## ⚙️ Configuration Highlights
+
+### Module Federation Setup
+
+Each remote app exposes components via Vite Module Federation:
+
+```javascript
+// vite.config.js of remote apps
+export default defineConfig({
+  plugins: [
+    federation({
+      name: "cartApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Cart": "./src/components/Cart.jsx",
+      },
+      shared: ["react", "react-dom"],
+    }),
+  ],
+});
+```
+
+### Container App Configuration
+
+```javascript
+// vite.config.js of container app
+export default defineConfig({
+  plugins: [
+    federation({
+      name: "containerApp",
+      remotes: {
+        cartApp: "http://localhost:3001/assets/remoteEntry.js",
+        productsApp: "http://localhost:3002/assets/remoteEntry.js",
+      },
+      shared: ["react", "react-dom"],
+    }),
+  ],
+});
+```
+
+## 🚦 Development Notes
+
+- **Start order matters**: Remote apps should be running before the host app
+- **Hot reloading**: Changes in remote apps will reflect in the host app automatically
+- **Shared dependencies**: Common dependencies are shared to avoid duplication
+
+## 📋 Available Scripts
+
+| Command           | Description                                |
+| ----------------- | ------------------------------------------ |
+| `npm run dev`     | Start all applications in development mode |
+| `npm run build`   | Build all applications for production      |
+| `npm run preview` | Preview production build locally           |
+| `npm run lint`    | Run linting across all applications        |
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+1. **Connection refused errors**: Ensure all remote apps are running on correct ports
+2. **Module not found**: Check that exposed modules names match exactly
+3. **Shared dependency conflicts**: Verify consistent versions in package.json files
+
+### Port Conflicts
+
+If ports are already in use, update the `vite.config.js` files:
+
+```javascript
+server: {
+  port: 3000; // Change to available port
+}
+```
+
+## 📚 Learn More
+
+- [Vite Module Federation](https://github.com/originjs/vite-plugin-federation)
+- [Turborepo Documentation](https://turbo.build/repo/docs)
+- [Micro-frontends Architecture](https://micro-frontends.org/)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+**Note**: This setup demonstrates modern micro-frontend architecture using Vite Module Federation. For production deployment, consider using CDN hosting for remote entries and implementing proper versioning strategies.
