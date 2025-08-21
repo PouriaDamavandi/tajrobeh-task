@@ -6,11 +6,11 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "products_app",
+      name: "cart_app",
       filename: "remoteEntry.js",
       // Modules to expose
       exposes: {
-        "./products_app": "./src/App.tsx",
+        "./cart_app": "./src/App.tsx",
       },
       shared: ["react", "react-dom"],
     }),

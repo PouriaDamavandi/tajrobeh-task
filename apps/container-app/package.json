@@ -1,14 +1,14 @@
 {
-  "name": "products-app",
+  "name": "container-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3002 --strictPort",
+    "dev": "vite --port 3000 --strictPort",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 3002 --strictPort",
-    "serve": "vite preview --port 3002 --strictPort"
+    "preview": "vite preview --port 3000 --strictPort",
+    "serve": "vite preview --port 3000 --strictPort"
   },
   "dependencies": {
     "react": "^19.1.1",
