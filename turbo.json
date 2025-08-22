@@ -1,15 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [
-        "apps/cart-app/dist/**",
-        "apps/container-app/dist/**",
-        "apps/products-app/dist/**"
-      ]
+      "outputs": ["dist/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]

@@ -72,9 +72,9 @@ async function main() {
 
     // 2. NOW SERVE THE BUILT REMOTE APPS
     console.log("🌐 Serving remote applications...");
-    const cartApp = spawnService("pnpm --filter cart-app serve", "CART", 34);
+    const cartApp = spawnService("pnpm --filter cart-app preview", "CART", 34);
     const productsApp = spawnService(
-      "pnpm --filter products-app serve",
+      "pnpm --filter products-app preview",
       "PRODUCTS",
       32
     );

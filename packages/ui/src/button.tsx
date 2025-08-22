@@ -1,18 +1,28 @@
-"use client";
-
-import { ReactNode } from "react";
+import React from "react";
 
 interface ButtonProps {
-  children: ReactNode;
+  children: React.ReactNode;
+  onClick?: () => void;
+  variant?: "primary" | "secondary";
   className?: string;
-  appName: string;
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  variant = "primary",
+  className = "",
+}) => {
+  const baseClasses = "px-4 py-2 rounded font-medium transition-colors";
+  const variantClasses =
+    variant === "primary"
+      ? "bg-blue-600 text-white hover:bg-blue-700"
+      : "bg-gray-200 text-gray-800 hover:bg-gray-300";
+
   return (
     <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+      className={`${baseClasses} ${variantClasses} ${className}`}
+      onClick={onClick}
     >
       {children}
     </button>

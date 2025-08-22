@@ -3,8 +3,6 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/start.js",
-    "dev:host": "pnpm --filter container-app dev",
-    "dev:remotes": "pnpm --filter cart-app build && pnpm --filter products-app build && pnpm --filter cart-app serve & pnpm --filter products-app serve",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -15,7 +13,12 @@
     "turbo": "^2.5.6",
     "typescript": "5.9.2",
     "concurrently": "^8.2.2",
-    "wait-on": "^7.2.0"
+    "wait-on": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "tsc-alias": "^1.8.6"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
