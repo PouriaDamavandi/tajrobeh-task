@@ -1,3 +1,10 @@
 /// <reference types="vite/client" />
-declare module "products_app/products_app";
-declare module "cart_app/cart_app";
+declare module "cart_app/CartApp" {
+  const CartApp: React.ComponentType;
+  export default CartApp;
+}
+
+declare module "products_app/ProductsApp" {
+  const ProductsApp: React.ComponentType;
+  export default ProductsApp;
+}

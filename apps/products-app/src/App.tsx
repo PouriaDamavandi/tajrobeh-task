@@ -1,5 +1,7 @@
-function App() {
-  return <div>Im a products-app</div>;
-}
+import React from "react";
 
-export default App;
+const ProductsApp: React.FC = () => {
+  return <div>I am Products App</div>;
+};
+
+export default ProductsApp;
